@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://backend:8000/api
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    environment:
+      - DJANGO_SETTINGS_MODULE=event_management.settings
+      - DATABASE_URL=postgres://user:password@database:5432/eventdb
+
+  database:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=eventdb
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+
+  notification-service:
+    build:
+      context: ./notifications
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    environment:
+      - FIREBASE_CONFIG=/app/firebase-config.json
+
+volumes:
+  postgres_data:

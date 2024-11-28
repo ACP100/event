@@ -1,0 +1,39 @@
+event-management-system/
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── App.js
+│   │   └── index.js
+│   ├── package.json
+│   └── README.md
+│
+├── backend/
+│   ├── event_management/
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── apps/
+│   │   ├── authentication/
+│   │   ├── spaces/
+│   │   ├── bookings/
+│   │   └── notifications/
+│   ├── requirements.txt
+│   └── manage.py
+│
+├── database/
+│   └── init_db.sql
+│
+├── docker/
+│   ├── frontend.Dockerfile
+│   ├── backend.Dockerfile
+│   └── docker-compose.yml
+│
+└── docs/
+    ├── user_manual.md
+    └── technical_documentation.md
